@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "audio_app_example",
+			"path": "../.."
+		},
+		{
+			"name": "assets",
+			"path": "../../../../PodCasts/flutter_music_app_ui-master/assets"
+		}
+	],
+	"settings": {
+		"java.project.sourcePaths": [
+			""
+		]
+	}
+}
