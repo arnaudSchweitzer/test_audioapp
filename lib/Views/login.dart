@@ -11,7 +11,7 @@ class Login extends StatelessWidget{
             children: [
               SizedBox(height: 40),
               loginSection,
-              appleLogin,
+  
               googleLogin,
               emailLogin,
               signIn,
