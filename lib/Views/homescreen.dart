@@ -7,11 +7,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 40),
-              titleSection,
+
               searchSection,
               boxSection,
               iconSection,
@@ -106,7 +106,16 @@ class HomeScreen extends StatelessWidget {
           )
           ],
          */
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: Image.asset(
+              'assets/images/LOGO2.jpg',
+              height: 60,
+            )
+          ),
           ); 
+
       
   }
 }
