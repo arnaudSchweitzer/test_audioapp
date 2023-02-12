@@ -64,13 +64,13 @@ void dispose(){
                 label: 'Home',
                  ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_border_outlined),
-                label: 'Favorites',
+                icon: Icon(Icons.playlist_play_rounded),
+                label: 'Playlists',
                  ),
 
               BottomNavigationBarItem(
                 icon: Icon(Icons.play_circle_fill),
-                label: 'Listen',
+                label: 'Listening',
                  ),
 
               BottomNavigationBarItem(
