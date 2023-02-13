@@ -1,8 +1,6 @@
-import 'package:audio_app_example/Views/songscreen.dart';
-import 'package:audio_app_example/homeview.dart';
 import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
-
+import 'Views/playlists_view.dart';
 
 
 void main() {
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: _title,
-        home: HomeView(),
+        home: PlaylistShow(),
       );
   }
 }
