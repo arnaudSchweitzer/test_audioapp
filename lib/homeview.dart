@@ -3,6 +3,7 @@ import 'package:audio_app_example/Settings/settings.dart';
 import 'package:audio_app_example/Views/homescreen.dart';
 import 'package:audio_app_example/Views/listening_view.dart';
 import 'package:audio_app_example/Views/login.dart';
+import 'package:audio_app_example/Views/playlistpage.dart';
 import 'package:audio_app_example/Views/playlists_view.dart';
 import 'package:audio_app_example/Views/songscreen.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ void dispose(){
           children: const <Widget> [
             
             HomeScreen(),
-            PlaylistShow(),
+            PlaylistPage(),
             SongScreen(),
             Login(),
             Parameters(),
