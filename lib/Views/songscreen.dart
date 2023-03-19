@@ -10,6 +10,7 @@ import 'package:rxdart/rxdart.dart' as rxdart;
 
 import '../widgets/widgets.dart';
 
+
 class SongScreen extends StatefulWidget {
   const SongScreen({Key? key}) : super(key: key);
   @override
@@ -78,36 +79,50 @@ void dispose(){
     }
   }
 
-class _MusicPlayer extends StatelessWidget {
+class _MusicPlayer extends StatefulWidget {
   const _MusicPlayer({
-    super.key,
+    Key? key,
     required this.song,
     required Stream<SeekBarData> seekBarDataStream,
     required this.audioPlayer,
-  }) : _seekBarDataStream = seekBarDataStream;
+  }) : _seekBarDataStream = seekBarDataStream, super(key: key);
 
   final Song song;
   final Stream<SeekBarData> _seekBarDataStream;
   final AudioPlayer audioPlayer;
 
   @override
+  _MusicPlayerState createState() => _MusicPlayerState();
+}
+
+class _MusicPlayerState extends State<_MusicPlayer> {
+  double _playbackSpeed = 1.0;
+
+        void _setPlaybackSpeed(double speed) {
+    setState(() {
+      _playbackSpeed = speed;
+    });
+    widget.audioPlayer.setPlaybackSpeed(speed);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
-        child:Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           Text(
-            song.title,
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+            widget.song.title,
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           Text(
-            song.description,
+            widget.song.description,
             maxLines: 2,
             style: Theme.of(context)
                 .textTheme
@@ -116,19 +131,18 @@ class _MusicPlayer extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           StreamBuilder<SeekBarData>(
-            stream: _seekBarDataStream,
-            builder: 
-            (context, snapshot){
+            stream: widget._seekBarDataStream,
+            builder: (context, snapshot) {
               final positionData = snapshot.data;
               return SeekBar(
-                position: positionData?.position ?? Duration.zero, 
+                position: positionData?.position ?? Duration.zero,
                 duration: positionData?.duration ?? Duration.zero,
-                onChangeEnd: audioPlayer.seek,
-                );
+                onChangeEnd: widget.audioPlayer.seek,
+              );
             },
           ),
-          Playerbuttons(audioPlayer: audioPlayer),
-        Row(
+          Playerbuttons(audioPlayer: widget.audioPlayer),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -140,7 +154,6 @@ class _MusicPlayer extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              
               IconButton(
                 iconSize: 35,
                 onPressed: () {},
@@ -157,13 +170,38 @@ class _MusicPlayer extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              IconButton(
+              DropdownButton<double>(
                 iconSize: 35,
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.speed,
+                value: _playbackSpeed,
+                dropdownColor: Colors.grey[900],
+                style: const TextStyle(
                   color: Colors.white,
+                  fontSize: 20,
                 ),
+                items: [
+                  const DropdownMenuItem(
+                    value: 0.5,
+                    child: Text('0.5x'),
+                  ),
+                  const DropdownMenuItem(
+                    value: 1.0,
+                    child: Text('1.0x'),
+                  ),
+                  const DropdownMenuItem(
+                    value: 1.5,
+                    child: Text('1.5x'),
+                  ),
+                  const DropdownMenuItem(
+                    value: 2.0,
+                    child: Text('2.0x'),
+                  ),
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    _playbackSpeed = value!;
+                  });
+                  widget.audioPlayer.setPlaybackSpeed(value);
+                },
               ),
               IconButton(
                 iconSize: 35,
@@ -175,9 +213,7 @@ class _MusicPlayer extends StatelessWidget {
               ),
             ],
           ),
-
-
-      ],
+        ],
       ),
     );
   }
