@@ -41,7 +41,7 @@ void dispose(){
           children: const <Widget> [
             
             HomeScreen(),
-            PlaylistPage(),
+            Favorites(),
             SongScreen(),
             Login(),
             Parameters(),
