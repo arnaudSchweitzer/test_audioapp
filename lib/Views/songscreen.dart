@@ -102,7 +102,7 @@ class _MusicPlayerState extends State<_MusicPlayer> {
     setState(() {
       _playbackSpeed = speed;
     });
-    widget.audioPlayer.setPlaybackSpeed(speed);
+    widget.audioPlayer.setSpeed(speed);
   }
 
   @override
@@ -200,7 +200,7 @@ class _MusicPlayerState extends State<_MusicPlayer> {
                   setState(() {
                     _playbackSpeed = value!;
                   });
-                  widget.audioPlayer.setPlaybackSpeed(value);
+                  widget.audioPlayer.setSpeed(value!);
                 },
               ),
               IconButton(
