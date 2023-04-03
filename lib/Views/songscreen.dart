@@ -7,8 +7,9 @@ import 'package:just_audio/just_audio.dart';
 import '../models/song_models.dart';
 import '../models/playlist_model.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
-
+//import 'package:audio_app_example/Views/note_dialog.dart'
 import '../widgets/widgets.dart';
+import 'note_dialog.dart';
 
 
 class SongScreen extends StatefulWidget {
@@ -147,13 +148,20 @@ class _MusicPlayerState extends State<_MusicPlayer> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               IconButton(
-                iconSize: 35,
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.flag_outlined,
-                  color: Colors.white,
-                ),
-              ),
+  iconSize: 35,
+  onPressed: () {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => NoteDialog(
+        audioPlayer: widget.audioPlayer,
+      ),
+    );
+  },
+  icon: const Icon(
+    Icons.note_add_outlined,
+    color: Colors.white,
+  ),
+),
               IconButton(
                 iconSize: 35,
                 onPressed: () {},
