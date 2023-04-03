@@ -1,4 +1,3 @@
-
 import 'package:audio_app_example/widgets/seekbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -162,14 +161,7 @@ class _MusicPlayerState extends State<_MusicPlayer> {
     color: Colors.white,
   ),
 ),
-              IconButton(
-                iconSize: 35,
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.comment_outlined,
-                  color: Colors.white,
-                ),
-              ),
+              
               IconButton(
                 iconSize: 35,
                 onPressed: () {},
