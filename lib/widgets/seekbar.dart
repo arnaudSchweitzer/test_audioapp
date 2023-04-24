@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SeekBarData{
@@ -59,38 +57,37 @@ String _formatDuration(Duration? duration) {
           overlayShape: const RoundSliderOverlayShape(
             overlayRadius: 10,
           ),
-          activeTrackColor: Colors.white.withOpacity(0.2),
-          inactiveTrackColor: Colors.white,
+          activeTrackColor:Colors.white,
+          inactiveTrackColor: Colors.white.withOpacity(0.2),
           thumbColor: Colors.white,
           overlayColor: Colors.white,
          ), 
       
       child: Slider(
-        min: 0.0,
-        max: widget.duration.inMilliseconds.toDouble(),
-        value: min(_dragValue ?? widget.duration.inMilliseconds.toDouble(),
-        widget.position.inMicroseconds.toDouble(),), 
-        onChanged: (value){
-          setState(() {
-            _dragValue = value;
-          });
-          if(widget.onChanged != null){
-            widget.onChanged!(Duration(milliseconds: value.round(),),);
-          }
-        },
-        onChangeEnd: (value){
-          if (widget.onChangeEnd !=null) {
-              widget.onChangeEnd!(
-                Duration(
-                  milliseconds: value.round(),
-                )
-              );
-            
-          }
-          _dragValue = null;
+  min: 0.0,
+  max: widget.duration.inMilliseconds.toDouble(),
+  value: _dragValue?.clamp(0.0, widget.duration.inMilliseconds.toDouble()) ??
+      widget.position.inMilliseconds.toDouble(),
+  onChanged: (value) {
+    setState(() {
+      _dragValue = value;
+    });
+    if (widget.onChanged != null) {
+      widget.onChanged!(Duration(
+        milliseconds: value.round(),
+      ));
+    }
+  },
+  onChangeEnd: (value) {
+    if (widget.onChangeEnd != null) {
+      widget.onChangeEnd!(Duration(
+        milliseconds: value.round(),
+      ));
+    }
+    _dragValue = null;
+  },
+),
 
-        },
-        ),
       ),
       ),
        Text(_formatDuration(widget.duration)),
