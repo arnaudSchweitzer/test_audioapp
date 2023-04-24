@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+
 class SeekBarData{
   final Duration position;
   final Duration duration;
