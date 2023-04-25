@@ -48,47 +48,79 @@ void dispose(){
             
           ]
           ,),
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            onTap: (index) {
-              setState((
-              ) {
-                _currentIndex = index;               
-              });
-              _pageController.jumpToPage(_currentIndex);             
-            },
-            type: BottomNavigationBarType.fixed, // Fixed 
-              backgroundColor: Colors.white, // <-- This works for fixed
-              selectedItemColor: Colors.orangeAccent,
-              unselectedItemColor: Colors.grey,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-                 ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.playlist_play_rounded),
-                label: 'Playlists',
-                 ),
+          bottomNavigationBar: NavigationBar(
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+            _pageController.jumpToPage(index);
+          });
+        },
+        currentIndex: _currentIndex,
+      ),
+    );
+    
+  }
 
-              BottomNavigationBarItem(
-                icon: Icon(Icons.play_circle_fill),
-                label: 'Listening',
-                 ),
-
-              BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle_outlined),
-                label: 'Account',
-                 ), 
-
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: 'Settings',
-                 ), 
-               
-                    
-            ]
+ Widget NavigationBar({required int currentIndex, required Function(int) onTap}) {
+    return Container(
+      color: const Color(0xfff6f8ff),
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 4,
+                blurRadius: 10),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
+          child: BottomNavigationBar(
+            selectedItemColor: Color.fromARGB(255, 237, 158, 41),
+            selectedFontSize: 12,
+            unselectedFontSize: 12,
+            unselectedItemColor: Colors.grey.withOpacity(0.7),
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            type: BottomNavigationBarType.fixed,
+            currentIndex: currentIndex,
+            onTap: onTap,
+            items: [
+              const BottomNavigationBarItem(
+                label: 'Home',
+                icon: Icon(
+                  Icons.home_rounded,
+                  size: 40,
+                ),
+              ),
+              const BottomNavigationBarItem(
+                label: 'PlayLists',
+                icon: Icon(
+                  Icons.playlist_add_check_circle,
+                  size: 40,
+                ),
+              ),
+              const BottomNavigationBarItem(
+                label: 'Listening',
+                icon: Icon(
+                  Icons.play_arrow_rounded,
+                  size: 40,
+                ),
+              ),
+              const BottomNavigationBarItem(
+                label: 'Account',
+                icon: Icon(
+                  Icons.account_circle_rounded,
+                  size: 40,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
   

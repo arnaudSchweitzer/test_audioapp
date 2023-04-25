@@ -113,7 +113,7 @@ Widget boxSection = Container(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
-        'How robots are changing the world',
+        'Oui',
         style: TextStyle(
           color: Colors.white,
           fontSize: 25,
