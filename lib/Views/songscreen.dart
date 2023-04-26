@@ -8,6 +8,7 @@ import '../models/playlist_model.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
 import '../widgets/widgets.dart';
 import 'note_dialog.dart';
+import '../widgets/custom_button.dart';
 
 
 class SongScreen extends StatefulWidget {
