@@ -184,8 +184,16 @@ class _MusicPlayerState extends State<_MusicPlayer> {
                     child: Text('0.5x'),
                   ),
                   const DropdownMenuItem(
+                    value: 0.75,
+                    child: Text('0.75x'),
+                  ),
+                  const DropdownMenuItem(
                     value: 1.0,
                     child: Text('1.0x'),
+                  ),
+                  const DropdownMenuItem(
+                    value: 1.25,
+                    child: Text('1.25x'),
                   ),
                   const DropdownMenuItem(
                     value: 1.5,
